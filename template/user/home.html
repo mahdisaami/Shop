@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %} Home{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+
+    <h2 class="text-info">
+        Hello {{request.user.username}}
+    </h2>
+
+{%endblock%}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} {{ user.username }}{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+
+{% block body %}
+
+
+    <div class="card" style="margin:auto; width:570px; background:#1976d2; border-radius:25px; color:white">
+      <img src="{{user.profile.avatar.url}}" alt="{{user.username}}"
+           style="margin-top: 20px; margin-left: 20px; margin-right: 20px; border-radius: 9px;
+            width: -webkit-fill-available;">
+      <div style="margin:auto">
+        <h1 style="margin-top:4px">{{user.username}}</h1>
+        <h4>{{user.email}}</h4>
+      </div>
+    </div>
+{% endblock %}
