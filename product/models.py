@@ -69,7 +69,7 @@ class Media(BaseModel):
         db_table = 'media'
 
     def __str__(self):
-        return self.media_type
+        return '{} - {}'.format(str(self.product), self.get_media_type_display())
 
 
 class Star(BaseModel):

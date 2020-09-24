@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block title%}Products{%endblock%}
+
+{%block css%}{%endblock%}
+
+{%block body%}
+
+    {% for pr in object_list%}
+        <div class="card mb-3" style="max-width: 540px;">
+          <div class="row no-gutters" style="margin-bottom: auto;padding: 10px;">
+            <div class="col-md-4">
+              <img src="{{pr.medias.first.media_file.url}}" class="card-img"
+                   alt="{{pr.medias.first.media_file.url}}" style="border-radius: 5px;height:165px">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">{{pr.name}}</h5>
+                <p class="card-text">price: {{pr.price}}</p>
+              </div>
+                <div class="card-body">
+                 <a href="https://www.varzesh3.com/" style="color:white">
+                     <button type="button" class="btn #0277bd light-blue darken-3" style="border-radius: 10px;">Add</button>
+                 </a>
+                  <a href="https://www.varzesh3.com/" style="color:white">
+                     <button type="button" class="btn #0277bd light-blue darken-3" style="border-radius: 10px;" >Detail</button>
+                  </a>
+        </div>
+            </div>
+          </div>
+        </div>
+
+    {%endfor%}
+
+
+{%endblock%}

@@ -1,14 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <form action="{{form.action}}" method="post" enctype="multipart/form-data">
-        {% csrf_token%}
-        {{form.as_p}}
-        <button type="submit">submit</button>
-    </form>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title%}Add Product{%endblock%}
+{%block css%}
+{%endblock%}
+
+{%block body%}
+
+
+        <form id="post_form" method="post" action="{{form.action}}" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            {{ ProductForm.name|as_crispy_field }}
+            {{ ProductForm.description|as_crispy_field }}
+            {{ ProductForm.price|as_crispy_field }}
+            {{ ProductForm.category|as_crispy_field }}
+
+            {{ formset.management_form }}
+            {% for form in formset %}
+              {{form.media_file| as_crispy_field }}
+            {% endfor %}
+
+
+            <button class="btn #0277bd light-blue darken-3" style="color:darkblue" type="submit" >Submit</button>
+        </form><br><br><br><br><br>
+{%endblock%}

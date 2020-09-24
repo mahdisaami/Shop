@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
     {%block title%} Register {%endblock%}
 {% block css %}
@@ -13,20 +14,11 @@
       </p>
       <form action="" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <div>Username: {{form.username}}</div>
-            <div>Email: {{form.email}}</div>
-            <div>Password: {{form.password}}</div>
-            <div class="file-field input-field">
-                <div class="btn">
-                <span>File</span>
-                <input type="file">
-                  {{form.avatar}}
-              </div>
-              <div class="file-path-wrapper">
-                <input class="file-path validate" type="text">
-              </div>
-        </div>
-          <button class="btn btn-primary" type="submit" >Register</button>
+            {{form.email | as_crispy_field}}
+            {{form.username | as_crispy_field}}
+            {{form.password | as_crispy_field}}
+            {{form.avatar | as_crispy_field}}
+          <button class="btn #0277bd light-blue darken-3" style="color:darkblue" type="submit" >Register</button>
       </form>
         <br>
 

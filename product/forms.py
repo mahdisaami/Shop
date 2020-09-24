@@ -1,7 +1,9 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django import forms
 
 from category.models import Category
-from product.models import Product
+from product.models import Product, Media
 
 
 def choices():
@@ -13,18 +15,27 @@ def choices():
     return context
 
 
-class CreateProductForm(forms.Form):
+class CreateProductForm(forms.ModelForm):
+    # def __init__(self):
+    #     super(CreateProductForm, self).__init__()
+    #     self.fields['category'].queryset = Category.objects.filter(name='Clothes')
 
-    name = forms.CharField(max_length=32)
-    description = forms.CharField(widget=forms.Textarea)
-    price = forms.FloatField()
-    category = forms.ChoiceField(choices=choices())
+    class Meta:
+        model = Product
+        fields = ('name', 'description', 'price', 'category')
 
-    def clean(self):
-        pk = int(self.cleaned_data['category'])
-        category = Category.objects.filter(pk=pk).first()
-        self.cleaned_data['category'] = category
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+    helper.form_method = 'POST'
 
-    def save(self):
-        product = Product.objects.create(**self.cleaned_data)
 
+class ImageForm(forms.ModelForm):
+    media_file = forms.ImageField(label='Image')
+
+    class Meta:
+        model = Media
+        fields = ('media_file',)
+
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+    helper.form_method = 'POST'

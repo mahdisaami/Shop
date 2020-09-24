@@ -23,4 +23,5 @@ class ProductAdmin(admin.ModelAdmin):
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Star)
 admin.site.register(Comment)
+admin.site.register(Media)
 admin.site.register(PrAttribute, PrAttributeAdmin)
