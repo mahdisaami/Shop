@@ -3,7 +3,7 @@ from crispy_forms.layout import Submit
 from django import forms
 
 from category.models import Category
-from product.models import Product, Media
+from product.models import Product, Media, PrAttribute
 
 
 def choices():
@@ -35,6 +35,18 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Media
         fields = ('media_file',)
+
+    helper = FormHelper()
+    helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))
+    helper.form_method = 'POST'
+
+
+class CreatePrAttribute(forms.ModelForm):
+    value = forms.CharField(label='Value:',)
+
+    class Meta:
+        model = PrAttribute
+        fields = ('value',)
 
     helper = FormHelper()
     helper.add_input(Submit('submit', 'Submit', css_class='btn-primary'))

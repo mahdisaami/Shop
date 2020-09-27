@@ -16,7 +16,7 @@ class PrAttributeAdmin(admin.ModelAdmin):
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'category', 'available')
+    list_display = ('name', 'price', 'category', 'available', 'id')
     inlines = (PrAttributeInline, MediaInline)
 
 

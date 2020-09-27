@@ -34,7 +34,7 @@ class PrAttribute(BaseModel):
         CatAttribute, verbose_name=_('name'), related_name='pr_attributes', on_delete=models.CASCADE
         )
     product = models.ForeignKey(
-        Product, verbose_name=_('product'), related_name='pr_attribute', on_delete=models.CASCADE
+        Product, verbose_name=_('product'), related_name='pr_attributes', on_delete=models.CASCADE
         )
     value = models.CharField(verbose_name=_('value'), max_length=32)
 
@@ -90,7 +90,7 @@ class Comment(BaseModel):
     product = models.ForeignKey(Product, verbose_name=_('product'), related_name='comments', on_delete=models.CASCADE)
     user = models.ForeignKey(User, verbose_name=_('user'), related_name='comments', on_delete=models.CASCADE)
     reply_to = models.ForeignKey(
-        'self', verbose_name=_('reply to'), related_name='replies', on_delete=models.SET_NULL, null=True
+        'self', verbose_name=_('reply to'), related_name='replies', on_delete=models.SET_NULL, null=True, blank=True
     )
 
     class Meta:

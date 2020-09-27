@@ -2,6 +2,8 @@
 {% load crispy_forms_tags %}
 {% block title%}Add Product{%endblock%}
 {%block css%}
+<!--       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">-->
+<!--        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>-->
 {%endblock%}
 
 {%block body%}
@@ -20,8 +22,12 @@
             {% for form in formset %}
               {{form.media_file| as_crispy_field }}
             {% endfor %}
+<!--            -->
+<!--            {{ Attribute.management_form }}-->
+<!--            {% for form in Attribute %}-->
+<!--            {{ form.value| as_crispy_field }}-->
+<!--            {% endfor %}-->
 
-
-            <button class="btn #0277bd light-blue darken-3" style="color:darkblue" type="submit" >Submit</button>
+            <button class="btn btn-primary" type="submit" >Submit</button>
         </form><br><br><br><br><br>
 {%endblock%}
