@@ -9,6 +9,7 @@ class Category(BaseModel):
     categories = models.ForeignKey(
         'self', verbose_name=_('categories'), related_name='category',
         max_length=32, on_delete=models.SET_NULL, null=True, blank=True)
+    is_parent = models.BooleanField(verbose_name=_('is_parent'), default=False)
 
     class Meta:
         verbose_name = 'Category'
@@ -24,6 +25,7 @@ class CatAttribute(BaseModel):
     category = models.ForeignKey(
         Category, verbose_name=_('category'), related_name='cat_attributes', on_delete=models.CASCADE
     )
+
 
     class Meta:
         verbose_name = 'CatAttribute'

@@ -9,11 +9,14 @@ class BasketProductAdminInline(admin.TabularInline):
 
 
 class BasketAdmin(admin.ModelAdmin):
-    list_display = ('user', 'custom_column', 'invoice', 'paid')
+    list_display = ('user', 'custom_column', 'paid', 'total_price')
     inlines = (BasketProductAdminInline,)
 
     def custom_column(self, obj):
-        return ', '.join(obj.product.value_list('name', flat=True))
+        return ', '.join(obj.products.values_list('name', flat=True))
+
+    def total_price(self, obj):
+        return obj.total_price()
 
     custom_column.short_description = 'Product'
 

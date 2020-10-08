@@ -1,0 +1,29 @@
+{% extends 'base.html'%}
+
+{%block title%}Invoice{%endblock%}
+
+{%block css%}{%endblock%}
+
+
+{%block body%}
+<div class="container">
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Your Invoice</h5>
+          <p> <strong>Uuid: </strong>{{object.uuid}}</p>
+          <p> <strong>User: </strong>{{object.user.username}}</p>
+          <p> <strong>Paid: </strong>{{object.paid}}</p>
+
+        </div>
+        <div class="card-footer">
+            <p> <strong>Total Price: </strong>{{object.price}}$</p>
+        </div>
+
+      </div>
+
+        <a href="" >
+            <button style="margin-top:8px" type="button" class="btn btn-dark">Go to the payment page</button>
+        </a>
+</div>
+{%endblock%}

@@ -3,7 +3,6 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from lib.models import BaseModel
-from payment.models import Invoice
 from product.models import Product
 
 User = get_user_model()
@@ -20,9 +19,6 @@ class Basket(BaseModel):
         Product, verbose_name=_('product'), related_name='baskets', through='BasketProduct'
     )
     paid = models.BooleanField(verbose_name="paid", default=False)
-    invoice = models.OneToOneField(
-        Invoice, verbose_name=_('invoice'), related_name='basket', on_delete=models.CASCADE
-    )
 
     class Meta:
         verbose_name = 'Basket'
@@ -30,7 +26,13 @@ class Basket(BaseModel):
         db_table = 'basket'
 
     def __str__(self):
-        return self.pk, self.user.username
+        return "{} ({})".format(self.user.username, self.pk)
+
+    def total_price(self):
+        price = 0
+        for product in self.basket_products.all():
+            price += (product.price * product.quantity)
+        return price
 
 
 class BasketProduct(BaseModel):

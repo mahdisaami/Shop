@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}Make Basket{%endblock%}
+
+{%block css%}
+{%endblock%}
+
+{%block body%}
+    <form action="{{form.action}}" method="POST" id="post_form">
+        {%csrf_token %}
+        {{form.product| as_crispy_field}}
+        {{form.quantity| as_crispy_field}}
+        <button class="btn btn-primary" type="submit" >Submit</button>
+    </form><br><br><br><br><br>
+
+{%endblock%}

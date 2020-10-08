@@ -25,10 +25,11 @@ class CreateProductView(CreateView):
 
 
 @login_required
-def add_product(request):
+def create_product(request):
     ImageFormSet = modelformset_factory(Media, form=ImageForm, extra=3)
     AttributeFormSet = modelformset_factory(PrAttribute, form=CreatePrAttribute, extra=3)
     CatAttr = CatAttribute.objects.all()
+
 
     if request.method == 'POST':
 
@@ -36,9 +37,11 @@ def add_product(request):
         AttributeForm = AttributeFormSet(request.POST, request.FILES, queryset=PrAttribute.objects.none())
         formset = ImageFormSet(request.POST, request.FILES, queryset=Media.objects.none())
 
+
         if ProductForm.is_valid() and formset.is_valid() and AttributeForm.is_valid():
             product_form = ProductForm.save(commit=False)
             product_form.user = request.user
+
 
             product_form.save()
 

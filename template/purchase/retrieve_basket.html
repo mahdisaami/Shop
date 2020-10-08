@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}Basket{%endblock%}
+
+{%block css%}
+{%endblock%}
+
+{%block body%}
+    <div class="container">
+        {% for pro in object.basket_products.all %}
+            <div class="card bg-light mb-3" >
+                <div class="card-header"><strong>{{pro.product.name}}</strong></div>
+                <div class="card-body">
+                    <h6 class="card-title"><strong>Quantity: </strong>{{pro.quantity}}</h6>
+                    <h6 class="card-title"><strong>Price: </strong>{{pro.price}}</h6>
+                </div>
+            </div>
+        {% endfor %}
+        <a href="{% url 'create_invoice' %}">
+            <button type="button" class="btn btn-dark">Payment</button>
+        </a>
+    </div><br><br><br><br><br>
+
+
+
+{%endblock%}

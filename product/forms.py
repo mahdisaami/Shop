@@ -16,9 +16,9 @@ def choices():
 
 
 class CreateProductForm(forms.ModelForm):
-    # def __init__(self):
-    #     super(CreateProductForm, self).__init__()
-    #     self.fields['category'].queryset = Category.objects.filter(name='Clothes')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['category'].queryset = Category.objects.filter(is_parent=False)
 
     class Meta:
         model = Product
