@@ -30,18 +30,15 @@ def create_product(request):
     AttributeFormSet = modelformset_factory(PrAttribute, form=CreatePrAttribute, extra=3)
     CatAttr = CatAttribute.objects.all()
 
-
     if request.method == 'POST':
 
         ProductForm = CreateProductForm(request.POST)
         AttributeForm = AttributeFormSet(request.POST, request.FILES, queryset=PrAttribute.objects.none())
         formset = ImageFormSet(request.POST, request.FILES, queryset=Media.objects.none())
 
-
         if ProductForm.is_valid() and formset.is_valid() and AttributeForm.is_valid():
             product_form = ProductForm.save(commit=False)
             product_form.user = request.user
-
 
             product_form.save()
 
@@ -73,7 +70,7 @@ def create_product(request):
 
 class ProductListView(ListView):
     model = Product
-    fields = ('name', 'description', 'price', 'category', 'medias', )
+    fields = ('name', 'description', 'price', 'category', 'medias',)
     template_name = 'product/products.html'
     queryset = Product.objects.all()
 

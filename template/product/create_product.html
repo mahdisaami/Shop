@@ -22,11 +22,11 @@
             {% for form in formset %}
               {{form.media_file| as_crispy_field }}
             {% endfor %}
-<!--            -->
-<!--            {{ Attribute.management_form }}-->
-<!--            {% for form in Attribute %}-->
-<!--            {{ form.value| as_crispy_field }}-->
-<!--            {% endfor %}-->
+
+            {{ Attribute.management_form }}
+            {% for form in Attribute %}
+            {{ form.value| as_crispy_field }}
+            {% endfor %}
 
             <button class="btn btn-primary" type="submit" >Submit</button>
         </form><br><br><br><br><br>
